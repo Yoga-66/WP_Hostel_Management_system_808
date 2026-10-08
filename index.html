@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HostelHub - Hostel Management System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-icon">H</div>
+        <div><strong>HostelHub</strong><span>Management System</span></div>
+      </div>
+      <nav>
+        <button class="nav-item active" data-page="home"><span>⌂</span> Home</button>
+        <button class="nav-item" data-page="students"><span>♙</span> Students</button>
+        <button class="nav-item" data-page="rooms"><span>▦</span> Rooms</button>
+        <button class="nav-item" data-page="fees"><span>₹</span> Fees</button>
+        <button class="nav-item" data-page="complaints"><span>◫</span> Complaints</button>
+        <button class="nav-item" data-page="notices"><span>♢</span> Notices</button>
+        <button class="nav-item" data-page="profile"><span>◉</span> Profile</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <button class="nav-item" id="themeBtn"><span>☾</span> Dark Mode</button>
+        <button class="nav-item logout" id="logoutBtn"><span>↪</span> Logout</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="icon-btn menu-btn" id="menuBtn">☰</button>
+        <div class="mobile-brand">HostelHub</div>
+        <div class="top-actions">
+          <button class="icon-btn" id="notificationBtn">🔔<i></i></button>
+          <div class="avatar">AS</div>
+        </div>
+      </header>
+
+      <section class="content">
+        <div id="page-home" class="page active">
+          <div class="welcome">
+            <div>
+              <p class="eyebrow">STUDENT PORTAL</p>
+              <h1>Good morning, Arun 👋</h1>
+              <p>Here's what's happening with your hostel today.</p>
+            </div>
+            <div class="date-card"><span>Today</span><strong id="today"></strong></div>
+          </div>
+
+          <div class="hero-card">
+            <div>
+              <span class="pill">CURRENT ALLOCATION</span>
+              <h2>Room 204 · Block A</h2>
+              <p>Your room is shared with 3 other students.</p>
+              <button class="primary-btn" data-page="rooms">View Room Details →</button>
+            </div>
+            <div class="room-illustration">🛏️</div>
+          </div>
+
+          <div class="stats">
+            <div class="stat-card"><div class="stat-icon purple">🛏️</div><span>Room</span><strong>204</strong><small>Block A</small></div>
+            <div class="stat-card"><div class="stat-icon green">✓</div><span>Fee Status</span><strong>Paid</strong><small>Next due: Nov 10</small></div>
+            <div class="stat-card"><div class="stat-icon orange">◫</div><span>Complaints</span><strong>01</strong><small>In progress</small></div>
+            <div class="stat-card"><div class="stat-icon blue">♢</div><span>Notices</span><strong>04</strong><small>2 new today</small></div>
+          </div>
+
+          <div class="grid-2">
+            <div class="panel">
+              <div class="panel-head"><div><h3>Quick Actions</h3><p>Frequently used services</p></div></div>
+              <div class="quick-grid">
+                <button class="quick" data-page="fees"><span>💳</span><b>Pay Fees</b><small>View payment</small></button>
+                <button class="quick" data-page="complaints"><span>📝</span><b>Complaint</b><small>Report an issue</small></button>
+                <button class="quick" data-page="rooms"><span>🛏️</span><b>My Room</b><small>Room details</small></button>
+                <button class="quick" data-page="notices"><span>📢</span><b>Notices</b><small>Latest updates</small></button>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-head"><div><h3>Recent Activity</h3><p>Your latest hostel activities</p></div><button class="text-btn">View all</button></div>
+              <div class="activity">
+                <div class="activity-item"><span class="activity-dot green"></span><div><b>Fee payment successful</b><small>₹12,500 · Oct 02, 2026</small></div><em>✓</em></div>
+                <div class="activity-item"><span class="activity-dot orange"></span><div><b>Complaint updated</b><small>Room fan maintenance · Yesterday</small></div><em>→</em></div>
+                <div class="activity-item"><span class="activity-dot blue"></span><div><b>New hostel notice</b><small>Mess timing update · Today</small></div><em>!</em></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="page-students" class="page">
+          <div class="page-title"><div><p class="eyebrow">ADMINISTRATION</p><h1>Students</h1><p>Manage hostel residents and allocations.</p></div><button class="primary-btn" id="addStudentBtn">+ Add Student</button></div>
+          <div class="toolbar"><div class="search"><span>⌕</span><input id="studentSearch" placeholder="Search students..."></div><select id="roomFilter"><option value="all">All Rooms</option><option>101</option><option>102</option><option>103</option><option>204</option><option>205</option></select></div>
+          <div class="panel table-panel"><table><thead><tr><th>Student</th><th>ID</th><th>Room</th><th>Course</th><th>Status</th><th>Action</th></tr></thead><tbody id="studentTable"></tbody></table></div>
+        </div>
+
+        <div id="page-rooms" class="page">
+          <div class="page-title"><div><p class="eyebrow">ACCOMMODATION</p><h1>Room Management</h1><p>Track rooms, capacity and current occupancy.</p></div><button class="primary-btn" id="allocateBtn">+ Allocate Room</button></div>
+          <div class="room-grid" id="roomGrid"></div>
+        </div>
+
+        <div id="page-fees" class="page">
+          <div class="page-title"><div><p class="eyebrow">FINANCE</p><h1>Fees & Payments</h1><p>Track hostel fees and payment history.</p></div><button class="primary-btn" id="payBtn">Pay Now</button></div>
+          <div class="fee-overview"><div class="fee-card"><span>Outstanding</span><strong>₹0</strong><small>You're all caught up 🎉</small></div><div class="fee-card"><span>Paid This Year</span><strong>₹75,000</strong><small>5 successful payments</small></div><div class="fee-card"><span>Next Due</span><strong>Nov 10</strong><small>₹12,500 · Semester fee</small></div></div>
+          <div class="panel table-panel"><div class="panel-head"><div><h3>Payment History</h3><p>Recent transactions</p></div></div><table><thead><tr><th>Transaction</th><th>Date</th><th>Amount</th><th>Method</th><th>Status</th></tr></thead><tbody>
+            <tr><td><b>HOST-2026-005</b><small>Semester Hostel Fee</small></td><td>Oct 02, 2026</td><td>₹12,500</td><td>UPI</td><td><span class="status success">Paid</span></td></tr>
+            <tr><td><b>HOST-2026-004</b><small>Mess Fee</small></td><td>Sep 02, 2026</td><td>₹4,500</td><td>Card</td><td><span class="status success">Paid</span></td></tr>
+            <tr><td><b>HOST-2026-003</b><small>Semester Hostel Fee</small></td><td>Aug 02, 2026</td><td>₹12,500</td><td>UPI</td><td><span class="status success">Paid</span></td></tr>
+          </tbody></table></div>
+        </div>
+
+        <div id="page-complaints" class="page">
+          <div class="page-title"><div><p class="eyebrow">SUPPORT</p><h1>Complaints</h1><p>Report and track hostel maintenance issues.</p></div><button class="primary-btn" id="complaintBtn">+ New Complaint</button></div>
+          <div class="complaint-list" id="complaintList"></div>
+        </div>
+
+        <div id="page-notices" class="page">
+          <div class="page-title"><div><p class="eyebrow">ANNOUNCEMENTS</p><h1>Hostel Notices</h1><p>Important updates from hostel administration.</p></div></div>
+          <div class="notice-grid">
+            <article class="notice-card new"><span>NEW · OCT 08</span><h3>Mess Timing Updated</h3><p>Dinner timing has been changed to 7:30 PM – 9:30 PM from today.</p><a>Read more →</a></article>
+            <article class="notice-card"><span>OCT 07</span><h3>Hostel Inspection</h3><p>Monthly room inspection will be conducted this Saturday from 10 AM.</p><a>Read more →</a></article>
+            <article class="notice-card"><span>OCT 05</span><h3>Sports Day Registration</h3><p>Students can register for hostel sports day events before October 15.</p><a>Read more →</a></article>
+            <article class="notice-card"><span>OCT 02</span><h3>Fee Payment Reminder</h3><p>Semester fee payment deadline is November 10, 2026.</p><a>Read more →</a></article>
+          </div>
+        </div>
+
+        <div id="page-profile" class="page">
+          <div class="page-title"><div><p class="eyebrow">ACCOUNT</p><h1>My Profile</h1><p>Manage your personal information.</p></div><button class="primary-btn" id="editProfile">Edit Profile</button></div>
+          <div class="profile-layout"><div class="profile-card"><div class="big-avatar">AS</div><h2>Arun Kumar</h2><p>Student · STU001</p><div class="profile-line"><span>📧</span> arun.kumar@college.edu</div><div class="profile-line"><span>📱</span> +91 98765 43210</div><div class="profile-line"><span>🏠</span> Room 204, Block A</div></div>
+          <div class="panel profile-form"><h3>Personal Information</h3><div class="form-grid"><label>Full Name<input value="Arun Kumar"></label><label>Student ID<input value="STU001"></label><label>Email<input value="arun.kumar@college.edu"></label><label>Phone<input value="+91 98765 43210"></label><label>Course<input value="B.Sc Computer Science"></label><label>Year<input value="III Year"></label></div><button class="primary-btn" id="saveProfile">Save Changes</button></div></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal"><button class="close" id="closeModal">×</button><h2 id="modalTitle">Add Student</h2><p id="modalSubtitle">Enter student details below.</p><form id="modalForm"></form></div>
+  </div>
+  <div class="toast" id="toast">Saved successfully ✓</div>
+  <script src="script.js"></script>
+</body>
+</html>
